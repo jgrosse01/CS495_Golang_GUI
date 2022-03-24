@@ -6,32 +6,45 @@ import (
 	"math"
 )
 
-// I DID NOT WRITE FRAME, JUST MODIFIED IT. THERE APPEARS TO BE MUCH COMPLEXITY IN THIS MATH
+// I DID NOT WRITE FRAME, JUST MODIFIED IT. THERE APPEARS TO BE MUCH COMPLEXITY IN THIS MATH.
+// I did however do my best to comment it and some variable names are changed.
+// I am trying to make sense of this since the demo code was all condensed and came with no comments.
 func frame() *image.RGBA {
+	// here we make a new empty rectangle of the proper window size into an empty image
 	m := image.NewRGBA(image.Rect(0, 0, width, height))
 
+	// for the entire width of the empty image
 	for x := 0; x < width; x++ {
 		var (
-			step         image.Point
-			sideDist     pixel.Vec
+			// not sure about step
+			step image.Point
+			// distance from the nearest visible side of each tile?
+			sideDist pixel.Vec
+			// perpetual distance from the wall?
 			perpWallDist float64
-			hit, side    bool
+			// if the player is hitting a wall. and if the hitting is happening to the relevant side of the tile?
+			hit, side bool
 
+			// position of the object to cast rays and the location in the world
 			rayPos, worldX, worldY = playerPos, int(playerPos.X), int(playerPos.Y)
 
+			// sets the screen focus point for the camera so it stays where it is in relation to the monitor
 			cameraX = 2*float64(x)/float64(width) - 1
 
+			// the direction that rays should be cast (unit vector facing the direction of the rays being cast)
 			rayDir = pixel.V(
 				playerDir.X+plane.X*cameraX,
 				playerDir.Y+plane.Y*cameraX,
 			)
 
+			// the change in the distance that the rays are to be cast in?
 			deltaDist = pixel.V(
 				math.Sqrt(1.0+(rayDir.Y*rayDir.Y)/(rayDir.X*rayDir.X)),
 				math.Sqrt(1.0+(rayDir.X*rayDir.X)/(rayDir.Y*rayDir.Y)),
 			)
 		)
 
+		// no clue what these if statements are doing math wise...
 		if rayDir.X < 0 {
 			step.X = -1
 			sideDist.X = (rayPos.X - float64(worldX)) * deltaDist.X
@@ -74,12 +87,16 @@ func frame() *image.RGBA {
 			wallX = rayPos.Y + perpWallDist*rayDir.Y
 		}
 
+		// get width of a wall tile?
 		wallX -= math.Floor(wallX)
 
+		// note the texture size of the tile
 		texX := int(wallX * float64(textureSize))
 
+		// not sure
 		lineHeight := int(float64(height) / perpWallDist)
 
+		// no idea here
 		if lineHeight < 1 {
 			lineHeight = 1
 		}
@@ -122,6 +139,7 @@ func frame() *image.RGBA {
 			m.Set(x, y, c)
 		}
 
+		// just a reminder that I still have no clue here
 		var floorWall pixel.Vec
 
 		if !side && rayDir.X > 0 {
@@ -140,6 +158,7 @@ func frame() *image.RGBA {
 
 		distWall, distPlayer := perpWallDist, 0.0
 
+		// still nope
 		for y := drawEnd + 1; y < height; y++ {
 			currentDist := float64(height) / (2.0*float64(y) - float64(height))
 
@@ -160,5 +179,6 @@ func frame() *image.RGBA {
 		}
 	}
 
+	// returns the built png
 	return m
 }

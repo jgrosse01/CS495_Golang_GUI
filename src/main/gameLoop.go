@@ -59,7 +59,7 @@ func run() {
 
 		if window.Pressed(pixelgl.KeyA) {
 			if window.Pressed(pixelgl.KeyLeftShift) {
-				turnLeft(.1)
+				turnLeft(.13)
 			} else {
 				turnLeft(.07)
 			}
@@ -67,7 +67,7 @@ func run() {
 
 		if window.Pressed(pixelgl.KeyD) {
 			if window.Pressed(pixelgl.KeyLeftShift) {
-				turnRight(.1)
+				turnRight(.13)
 			} else {
 				turnRight(.07)
 			}

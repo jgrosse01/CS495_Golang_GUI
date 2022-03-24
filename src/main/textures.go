@@ -12,8 +12,9 @@ import (
 	"strings"
 )
 
-// used textures from demo, I don't know how to make pretty graphics and I also don't know how to convert an image to
-// a string of bytes to use in this program since the demo taught me how to render with a byte_array
+// used textures from demo, I don't know how to make pretty graphics, and I also don't know how to convert an image to
+// a string of bytes to use in this program since the demo taught me how to render with a byte_array rather than indexing
+// an image to figure out how to select pieces of a PNG to map to one texture
 var textures = textureLoader()
 
 // define each texture as a 64x64 cube
@@ -42,6 +43,7 @@ func textureLoader() *image.RGBA {
 	// starts draw at 0,0 (empty point)
 	draw.Draw(textureMap, textureMap.Bounds(), tempImage, image.Point{}, draw.Src)
 
+	// returns texture map as a PNG image
 	return textureMap
 }
 
@@ -74,23 +76,29 @@ func readByteArray(filepath string) []byte {
 	// make a file reader instance for the file that is currently open
 	fileScanner := bufio.NewScanner(file)
 
+	// make a string array to read the texture bytes from a file
 	var stringArr []string
 	for fileScanner.Scan() {
 		stringArr = strings.Split(strings.ReplaceAll(fileScanner.Text(), " ", ""), ",")
 	}
 
-	var intArray []int
+	// convert to integers (since strings cannot be converted to a byte properly)
+	// make an int slice of the size of stringArr
+	var intArray = make([]int, len(stringArr))
 	for i, _ := range stringArr {
+		// convert each string in the list stringArr to an integer value then put it at that index of intArray
 		intVar, err := strconv.Atoi(stringArr[i])
 		if err != nil {
-			panic(err)
+			fmt.Println("Error converting string element to int in the process of reading texture bytes from file.")
 		}
-		intArray = append(intArray, intVar)
+		intArray[i] = intVar
 	}
 
+	// finally convert all of the integers to bytes to be used to make a PNG texture.
 	for _, element := range intArray {
 		retList = append(retList, byte(element))
 	}
 
+	// return the texture byte slice
 	return retList
 }

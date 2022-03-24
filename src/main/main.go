@@ -6,8 +6,8 @@ import (
 	"github.com/faiface/pixel/pixelgl"
 )
 
-// I did use the raycasting demo as a template, but I typed my own code.
-// I broke down what the raycasting demo was doing and figured out what the code meant then typed it out myself.
+// I did use the raycasting demo as a template, but I typed my own code for all but windowFrame.go which I copy pasted
+// and slightly modified to fit my naming convention.
 
 var fullscreen = false
 
@@ -35,19 +35,21 @@ func gameSetup() {
 	// initial direction is West
 	playerDir = pixel.V(-1.0, 0.0)
 	// camera height is 0.7 out of the total tile height of 1.
-	plane = pixel.V(0.0, 0.66)
+	plane = pixel.V(0.0, 0.7)
 }
 
 func main() {
 	// WOW FLAGS ARE COOL!!!!! I don't need to use os.Args[i]! FLAGS!
-	// I copy pasted the flags but there's no other way to make flags :)))))
+	// I referenced the demo here for the flags but there's no other way to make flags that I can find :)))))
 	flag.BoolVar(&fullscreen, "f", fullscreen, "fullscreen")
 	flag.IntVar(&width, "w", width, "width")
 	flag.IntVar(&height, "h", height, "height")
 	flag.Float64Var(&scale, "s", scale, "scale")
 	flag.Parse()
 
+	// call the game setup where we place our player
 	gameSetup()
 
+	// run the gui window and its associated main loop
 	pixelgl.Run(run)
 }
