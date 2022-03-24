@@ -11,6 +11,15 @@ In order to run this project:
 2. build the project with the following command "go build src/main/*.go" (without the quotes).
 3. run the generated executable file for your operating system.
 
+<pre>
+If you choose to run this executable from a command line terminal, you can pass flags to change how the game displays. 
+This can be tweaked to your resolution. The flags are as follows:
+1. -f     	controls whether or not the game is fullscreen
+2. -w <width pixel count>  	determines the width of the window that is rendered (default: 1920 pixels)
+3. -h <height pixel count> 	        determines the height of the window that is rendered (default: 1080 pixels)
+4. -s <scale factor>		determines how much the actual rendered image is scaled 
+                (if you have black borders on your fullscreen window, increase this (default: 3.0)
+</pre>
 
 The controls for the game are as follows:
 1. 'W' moves the player forward
