@@ -1,6 +1,6 @@
 # CS495_Golang_GUI
-A project built from reference code for Carroll College Computer Science Seminar which uses vector math and simple transformations to ray-cast a 3D play area onto a 2D screen, resulting in a "2.5D" type of "game". Uses Pixel graphics framework.
-
+A project built while utilizing reference code as needed for Carroll College Computer Science Seminar which uses vector math and simple transformations to ray-cast a 3D play area onto a 2D screen, resulting in a "2.5D" type of "game". Uses Pixel graphics framework.
+Reference code was used because I am still learning Go as a language and do not yet have the basics down; therefore, being able to read and understand uses of code in specific scenarios is important to the learning process at this point.
 
 This project far surpasses the minimum requirements, because, although reference code was involved, it was simply to learn the concepts and methods for most of the program—the majority of code was written by myself independent of the reference code (but still after having looked at it). This is also excluding the fact that the reference code was not commented so it was up to me to decipher what was happening and understand it myself.
 
