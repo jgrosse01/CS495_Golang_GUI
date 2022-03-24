@@ -14,11 +14,11 @@ In order to run this project:
 <pre>
 If you choose to run this executable from a command line terminal, you can pass flags to change how the game displays. 
 This can be tweaked to your resolution. The flags are as follows:
-1. -f     	controls whether or not the game is fullscreen
-2. -w <width pixel count>  	determines the width of the window that is rendered (default: 1920 pixels)
-3. -h <height pixel count> 	        determines the height of the window that is rendered (default: 1080 pixels)
-4. -s <scale factor>		determines how much the actual rendered image is scaled 
-                (if you have black borders on your fullscreen window, increase this (default: 3.0)
+1. -f     	                controls whether or not the game is fullscreen
+2. -w &lt;width pixel count&gt;  	determines the width of the window that is rendered (default: 1920 pixels)
+3. -h &lt;height pixel count&gt; 	determines the height of the window that is rendered (default: 1080 pixels)
+4. -s &lt;scale factor&gt;		determines how much the actual rendered image is scaled 
+                                    (if you have black borders on your fullscreen window, increase this (default: 3.0)
 </pre>
 
 The controls for the game are as follows:
