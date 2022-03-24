@@ -34,6 +34,8 @@ func moveBack(speed float64) {
 	}
 }
 
+// turning is cool, I learned something similar to this in MA334 not too long ago
+// which made this particular math easy to understand and remember.
 func turnRight(speed float64) {
 	// store the old player direction value in X
 	oldDirX := playerDir.X
